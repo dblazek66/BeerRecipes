@@ -1,0 +1,35 @@
+
+ul li{
+    list-style: none;
+    
+}
+.ingredient{
+    font-size: small;
+}
+.nav-item{
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.nav-link {
+    color: #b4b3b3 !important;
+  }
+  
+  .nav-link:focus, 
+  .nav-link:hover {
+    color: #ffffff !important;
+  }
+  .btn-w{
+    width: 150px;
+    text-align: right;
+  }
+  .page-num{
+    margin-right: 1em;
+    padding-right: 1em;
+    color:dodgerblue
+  }
+  .filterDiv{
+    background-color: dodgerblue;
+    padding: .5em;
+    color:#ffffff;
+    font-weight: bold;
+  }
