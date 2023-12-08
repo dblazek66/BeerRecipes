@@ -28,6 +28,10 @@
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Hop Level (IBUs)</a>
             <ul class="dropdown-menu" id="filterByIBU"></ul>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Alcohol %</a>
+            <ul class="dropdown-menu" id="filterByABV"></ul>
+          </li>          
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#" id="clearFilter">Clear Filter</a>
           </li>
@@ -35,7 +39,7 @@
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" id="nameSearch" placeholder="Search" aria-label="Search">
-          <button id="searchByName" class="btn btn-outline-success" type="button">Search</button>
+          <button id="searchByName" class="btn btn-outline-primary" type="button">Search</button>
         </form>
       </div>
     </div>
@@ -52,13 +56,13 @@
           </thead>
           <tbody></tbody>
       </table>
-      <nav aria-label="Page navigation example">
+      <nav class="d-flex justify-content-between" aria-label="Page navigation">
         <ul class="pagination">
-          <li class="page-num">Page: <span id="pageNumber"></span></li>
           <li class="page-item" id="pageP"><a class="page-link" href="#">Previous</a></li>
           <li class="page-item" id="pageN"><a class="page-link" href="#">Next</a></li>
-          
+          <li class="page-num"></li>
         </ul>
+        <div>Page: <span class="badge bg-primary" id="pageNumber"></span></div>
       </nav>  
 </div>
 
@@ -70,12 +74,29 @@
   </div>
   <div class="offcanvas-body">
     <div class="card p-1 m-2">
-      <div class="row small">
-          <span class="col" id="beerVolume"></span>
-          <span class="col" id="beerGravStart"></span>
-          <span class="col" id="beerGravEnd"></span>
-          <span class="col" id="beerIBU"></span>
-          <span class="col" id="beerABV"></span>
+      <div class="d-flex justify-content-between">
+        <div>
+          <div>Vol.</div>
+          <div><span class="badge bg-primary w-100" id="beerVolume"></span></div>
+        </div>
+        <div>
+          <div>O.G.</div>
+          <div><span class="badge bg-primary w-100" id="beerGravStart"></span></div>
+        </div>
+        <div>
+          <div>F.G.</div>
+          <div><span class="badge bg-primary w-100" id="beerGravEnd"></span></div>
+        </div>  
+        <div>
+          <div>IBUs</div>
+          <div><span class="badge bg-primary w-100" id="beerIBU"></span></div>
+        </div>
+        <div>
+          <div>ABV</div>
+          <div><span class="badge bg-primary w-100" id="beerABV"></span></div>
+        </div>               
+          
+          
       </div>                    
   </div>
 

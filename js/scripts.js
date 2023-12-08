@@ -78,16 +78,26 @@ const renderFilters = () => {
         </li>`);
   });
 
+  let abv = global.filters.abv;
+  $.each(abv, (key, item) => {
+    $("#filterByABV").append(`
+        <li>
+            <a class="dropdown-item search-abv" filter="${item.filter}" href="#">
+                ${item.display}
+            </a>
+        </li>`);
+  });
+
   $(".search-yeast").on("click", (e) => {
-    let yeast = `?yeast=${e.currentTarget.innerText}`;
+   // let yeast = `?yeast=${e.currentTarget.innerText}`;
     api_call.page = 1;
     api_call.param2 = `&yeast=${e.currentTarget.innerText}`;
     api_call.filterDisplay = e.currentTarget.innerText;
     getBeers();
   });
 
-  $(".search-ibu").on("click", (e) => {
-    let ibu = `?${e.currentTarget.attributes["filter"].nodeValue}`;
+  $(".search-ibu, .search-abv").on("click", (e) => {
+  //  let ibu = `?${e.currentTarget.attributes["filter"].nodeValue}`;
     api_call.page = 1;
     api_call.param2 = `&${e.currentTarget.attributes["filter"].nodeValue}`;
     api_call.filterDisplay = e.currentTarget.innerText;
@@ -120,10 +130,17 @@ const renderBeers = () => {
             <td>${item.tagline}</td>
             <td style="background-Color:${getSRM(Math.round(item.srm))}"> </td>
             <td>${item.ibu}</td>
-            <td>${item.abv}</td>
+            <td>${item.abv}%</td>
         </tr>`
     );
   });
+  if(global.data.length===0){
+    $("#beerTable").append(
+        `<tr>
+              <td colspan="5" class="text-danger">No results matching the query were found!</td>
+          </tr>`
+      );
+  }
   renderTableHeader();
   setPageNum();
   $(".beer").on("click", (e) => {
@@ -169,11 +186,11 @@ const renderBeerModal = () => {
   });
   $("#beerYeast").text(recipe.yeast);
   $("#beerBoilVolume").text(`${convertLiters(beer.boil_volume.value)} GL`);
-  $("#beerVolume").text(`${convertLiters(beer.volume.value)} GL`);
-  $("#beerGravStart").text(`OG: ${beer.target_og}`);
-  $("#beerGravEnd").text(`FG: ${beer.target_fg}`);
-  $("#beerIBU").text(`IBU: ${beer.ibu}`);
-  $("#beerABV").text(`ABV: ${beer.abv}`);
+  $("#beerVolume").text(convertLiters(beer.volume.value));
+  $("#beerGravStart").text(beer.target_og);
+  $("#beerGravEnd").text(beer.target_fg);
+  $("#beerIBU").text(beer.ibu);
+  $("#beerABV").text(beer.abv);
   $("#beerMash").empty();
 
   $.each(beer.method.mash_temp, (key, item) => {
@@ -213,7 +230,6 @@ const convertCelcius = (cel) => {
 
 const getBeers = () => {
   let param = `?page=${api_call.page}${api_call.param2}&per_page=${api_call.perPage}`;
-  console.log(param);
   let url = `https://api.punkapi.com/v2/beers${param}`;
   AjaxCall(url).done(function (result) {
     global.data = result;

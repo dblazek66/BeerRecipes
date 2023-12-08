@@ -27,6 +27,19 @@
         {"filter":"ibu_gt=39", "display": "More than 40 IBU"},
         {"filter":"ibu_gt=49", "display": "More than 50 IBU"}
     ],
+    "abv":
+    [
+        {"filter":"abv_lt=5", "display": "Less than 5%"},
+        {"filter":"abv_lt=4", "display": "Less than 4%"},
+        {"filter":"abv_lt=3", "display": "Less than 3%"},
+        {"filter":"abv_gt=5", "display": "More than 5%"},
+        {"filter":"abv_gt=6", "display": "More than 6%"},
+        {"filter":"abv_gt=7", "display": "More than 7%"},
+        {"filter":"abv_gt=8", "display": "More than 8%"},
+        {"filter":"abv_gt=9", "display": "More than 9%"},
+        {"filter":"abv_gt=10", "display": "More than 10%"}
+
+    ],    
     "SRM":{
         "1": "#FFE699",
         "2": "#FFD878",
